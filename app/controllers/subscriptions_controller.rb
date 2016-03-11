@@ -23,7 +23,6 @@ class SubscriptionsController < ApplicationController
     user.subscribed = "pro" #params[:plan]
     user.stripeid = customer.id
     user.save
-    user.subscription.build(subs_params)
 
     render json: user
 
@@ -46,10 +45,6 @@ class SubscriptionsController < ApplicationController
   end
 
 
-  private
 
-  def subs_params
-    params.require(:subscription).permit(:name, :subs_id, :price) 
-  end
 
 end
