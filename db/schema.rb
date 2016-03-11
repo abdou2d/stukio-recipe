@@ -49,15 +49,6 @@ ActiveRecord::Schema.define(version: 20160310122837) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.decimal  "price"
-    t.string   "subs_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.boolean  "admin",                  default: false, null: false
     t.string   "username",               default: "",    null: false

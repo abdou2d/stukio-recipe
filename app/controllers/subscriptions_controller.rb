@@ -42,13 +42,14 @@ class SubscriptionsController < ApplicationController
   	render json: subscription
   end
 
+  def change_plan
+  end
+
 
   private
 
   def subs_params
     params.require(:subscription).permit(:name, :subs_id, :price) 
   end
-
-
 
 end
