@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :authentication_tokens
   has_one :subscription
-  
+  mount_uploader :avatar, ImageUploader
 end

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index]
+  #before_filter :authenticate_user!, :except => [:index]
   before_action :check_if_admin, :only => [:create, :update, :edit, :destroy]
 
   def index
@@ -41,7 +41,7 @@ class CoursesController < ApplicationController
   private
 
   def course_params
-    params.require(:course).permit(:name, :description, :price)
+    params.require(:course).permit(:name, :description, :thumbnail)
   end
 
 

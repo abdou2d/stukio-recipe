@@ -59,4 +59,6 @@ gem 'devise'
 gem 'tiddle'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'stripe'
+gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
+gem 'carrierwave-aws'
 
