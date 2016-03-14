@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314161104) do
+ActiveRecord::Schema.define(version: 20160314185245) do
 
   create_table "authentication_tokens", force: :cascade do |t|
     t.string   "body"
@@ -46,6 +46,16 @@ ActiveRecord::Schema.define(version: 20160314161104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "read_marks", force: :cascade do |t|
+    t.integer  "readable_id"
+    t.string   "readable_type", null: false
+    t.integer  "reader_id"
+    t.string   "reader_type",   null: false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index"
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
