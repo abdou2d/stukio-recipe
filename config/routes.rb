@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   	resources :chapters
   end
 
-  resources :subscriptions
+  post   "/subscriptions" => "subscriptions#create"
+  put    "/subscriptions" => "subscriptions#update"
+  delete "/subscriptions" => "subscriptions#delete"
+
+  post "/plans" => "plans#update_plan"
 
   resources :schools
 
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
   get "/all_users" => "users#all_users"
 
   match 'users/:id' => 'users#update_user', via: [:patch]
+
 
 
 

@@ -47,7 +47,7 @@ end
 
 group :production do
 	gem 'pg'
-	#gem 'puma'
+	gem 'puma'
   gem 'rails_12factor'
 end
 
@@ -61,4 +61,11 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'stripe'
 gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 gem 'carrierwave-aws'
+gem 'simple_form'
+gem 'unread'
+
+
+
+
+
 

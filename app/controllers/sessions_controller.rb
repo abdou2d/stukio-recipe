@@ -11,10 +11,19 @@ class SessionsController < Devise::SessionsController
     respond_with sign_out
   end
 
+
+
   private
 
     # this is invoked before destroy and we have to override it
     def verify_signed_out_user
     end
+
+    def sign_in_remember 
+      @user = current_user 
+      sign_out current_user 
+      @user.remember_me = true 
+      sign_in @user 
+    end 
     
 end

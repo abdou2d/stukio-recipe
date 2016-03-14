@@ -1,17 +1,12 @@
 class SubscriptionsController < ApplicationController
 
-  #before_filter :authenticate_user!
-
-  def new
-  end
+  before_filter :authenticate_user!, :only => [:delete]
 
   def create
-  	# just for testing - change user to current_user
-  	user = User.first
+    user = User.find(params[:user])
 
     #gets the credit card details submitted in the form
     token = params[:stripeToken]
-    plan = params[:plan]
 
     #create a customer
     customer = Stripe::Customer.create(
@@ -20,31 +15,21 @@ class SubscriptionsController < ApplicationController
       email: user.email
     )
 
-    user.subscribed = "pro" #params[:plan]
+    #subscribe the user to a plan
+    user.subscribed = "pro"
     user.stripeid = customer.id
     user.save
 
     render json: user
 
+  end 
+
+  def delete
+    user = current_user
+    customer = Stripe::Customer.retrieve(user.stripeid)
+    subscription_id = customer.subscriptions.first.id
+    subscription = customer.subscriptions.retrieve(subscription_id)
+    user.subscribed = "basic"
   end
-
-  def update
-  	# just for testing - change user to current_user
-  	user = User.first
-	
-  	customer = Stripe::Customer.retrieve(user.stripeid)
-  	subscription_id = customer.subscriptions.first.id
-  	subscription = customer.subscriptions.retrieve(subscription_id)
-  	subscription.plan = "2" # later change for params[:plan]
-  	subscription.save
-
-  	render json: subscription
-  end
-
-  def change_plan
-  end
-
-
-
 
 end
